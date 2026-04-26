@@ -22,6 +22,11 @@
   h6 {
     font: inherit;
   }
+
+  html,
+  body {
+    height: 100%;
+  }
 }
 
 @layer base {
@@ -43,5 +48,50 @@
     font-size: var(--font-size);
     line-height: var(--line-height);
     font-family: "Work Sans", Arial, Helvetica, sans-serif;
+    background-color: var(--purple-100);
+  }
+
+  main {
+    --image-url: url("../assets/images/background-pattern-mobile.svg");
+
+    @media (375px < width) {
+      --image-url: url("../assets/images/background-pattern-desktop.svg");
+    }
+
+    display: flex;
+    height: 100%;
+    background: top center no-repeat var(--image-url);
+  }
+
+  article {
+    margin: auto;
+    background-color: var(--white);
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      font-weight: 700;
+      font-size: 2em;
+    }
+
+    details {
+      &:open {
+        img[alt="plus icon"] {
+          display: none;
+        }
+      }
+
+      &:not(:open) {
+        img[alt="minus icon"] {
+          display: none;
+        }
+      }
+    }
+
+    summary {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
