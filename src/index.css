@@ -47,8 +47,8 @@
     --font-2: 600 1em/1.3 var(--font-family);
     --font-3: 700 2em/1.3 var(--font-family);
 
-    --space-1: 1rem;
-    --space-2: 1.5rem;
+    --space-1: 1.25em;
+    --space-2: 1.75em;
   }
 
   body {
@@ -87,6 +87,7 @@
 
     details {
       padding-block: var(--space-1);
+      overflow: hidden;
 
       & ~ details {
         border-top: 0.125em solid var(--purple-100);
@@ -104,9 +105,20 @@
         }
       }
 
+      &::details-content {
+        transition: height 0.3s;
+      }
+
+      &:not(:open)::details-content {
+        height: 0;
+      }
+
+      &:open::details-content {
+        height: calc-size(fit-content, size);
+      }
+
       p {
         padding-block-start: var(--space-1);
-        text-wrap: pretty;
         color: var(--purple-600);
       }
     }
